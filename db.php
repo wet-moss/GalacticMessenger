@@ -1,13 +1,16 @@
 <?php
 
-function get_pdo()
+class Database 
 {
-    //подключение к БД
-    $pdo = new PDO("mysql:host=localhost;dbname=workspace__test;charset=utf8",
-    'root', 'root');
 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    public static function get_pdo($host = 'localhost', $dbname = 'workspace__test', 
+    $login = 'root', $password = 'root')
+    {  
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8",
+        $login, $password);
 
-    return $pdo;
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        return $pdo;
+    }
 }

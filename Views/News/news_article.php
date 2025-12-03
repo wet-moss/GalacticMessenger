@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <?php include './blocks/header.html'; ?>
+    <?php 
+        include './Views/Blocks/header.html'; 
+    ?>
 
     <main class="news-article container">
         <nav class="news-article__breadcrumbs">
@@ -38,11 +40,13 @@
                     Назад к новостям
                 </a>
             </div>
-            <img class="news-article__img" src="./images/<?= $article['image'] ?>" alt="Иллюстрация к новости"
+            <img class="news-article__img" src="./Images/<?= $article['image'] ?>" alt="Иллюстрация к новости"
                  width="740" height="570" loading="lazy"/>
         </div>
     </main>
 
-    <?php include './blocks/footer.html'; ?>
+    <?php 
+        include './Views/Blocks/footer.html'; 
+    ?>
 </body>
 </html>
