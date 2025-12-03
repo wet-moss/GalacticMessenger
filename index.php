@@ -1,7 +1,7 @@
 <?php
     //точка входа
 
-    require_once './controllers/news_controller.php';
+    require_once './controllers/NewsController.php';
 
 
     $controller = new NewsController();
