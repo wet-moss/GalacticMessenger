@@ -1,6 +1,9 @@
 <?php
+namespace App\Models;
 
-require_once './db.php';
+use App\Database as DB;
+
+use \PDO;
 
 class News
 {

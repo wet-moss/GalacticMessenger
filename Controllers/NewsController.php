@@ -1,7 +1,8 @@
 <?php
+namespace App\Controllers;
 
-require_once './Models/News.php';
-
+use App\Models\News;
+ 
 class NewsController
 {
     private News $newsModel;

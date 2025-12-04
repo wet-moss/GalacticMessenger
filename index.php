@@ -1,8 +1,10 @@
 <?php
-//точка входа
 
-require_once './Controllers/NewsController.php';
-require_once './Controllers/MainPageController.php';
+require_once 'autoload.php';
+
+use App\Controllers\NewsController;
+use App\Controllers\MainPageController;
+
 
 $news_controller = new NewsController();
 $main_page_controller = new MainPageController();
