@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c> 
+RewriteEngine On
+RewriteBase /
+
+#решётка = комментарии
+
+#RewriteRule ^(/index.php/page=1)$ ^(/news/)$ [L, QSA]
+#RewriteRule ^index.php/page=[1-9]?$
