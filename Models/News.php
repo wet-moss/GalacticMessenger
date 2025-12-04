@@ -4,11 +4,11 @@ require_once './db.php';
 
 class News
 {
-    private $database = new Database();
-    private $pdo = new PDO;
+    private PDO $pdo;
+
     public function __construct()
     {
-        $this->$pdo = Database::get_pdo();
+        $this->pdo = DB::connect();
     }
 
     public function getLastItem(): array
