@@ -14,11 +14,10 @@
 
     <main class="news-article container">
         <nav class="news-article__breadcrumbs">
-            <a href="/index.php?page=<?= $page ?>">Главная</a>
+            <a href="/news/">Главная</a>
             <span>/</span>
             <span class="news-article__breadcrumbs--current"><?= $article['title'] ?></span>
         </nav>
-
         <h2 class="news-article__title"><?= $article['title'] ?></h2>
         <div class="news-article__full">
             <div class="news-article__info">
@@ -27,7 +26,7 @@
                 </time>
                 <h2 class="news-article__announce"><?= $article['announce'] ?></h2>
                 <div class="news-article__content"><?= $article['content'] ?></div>
-                <a class="news-article__back-link" href="index.php?page=<?= $page ?>#news">
+                <a class="news-article__back-link" href="/news/">
                     <svg width="26" height="15" viewBox="0 0 26 15" transform="rotate(180)"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M25.707 8.07106C26.0975 7.68054 26.0975 7.04737 25.707 6.65685L19.343

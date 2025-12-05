@@ -26,7 +26,7 @@
         <h2 class="news__section-title container" id="news">Новости</h2>
         <div class="news__list">
             <?php foreach ($currentItemsList as $news) { ?>
-                <a class="news__link" href="/index.php?id=<?= $news['id'] ?>&page=<?= $currentPage ?>">
+                <a class="news__link" href="/news/<?= $news['id'] ?>/">
                     <div class="news__card">
                         <time class="news__time" datetime="<?= date('d.m.y', strtotime($news['date'])) ?>">
                             <?= date('d.m.y', strtotime($news['date'])) ?>
@@ -53,7 +53,7 @@
             <?php 
                 if ($currentPage > 1): 
             ?>
-                <a class="pagination__link pagination__link-arrow" href="/index.php?page=<?= $currentPage - 1 ?>#news">
+                <a class="pagination__link pagination__link-arrow" href="/news/page-<?= $currentPage - 1 ?>/">
                     <svg width="24" height="22" viewBox="0 0 24 22" fill="currentColor" transform="rotate(180)"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 10C2.44772 10 2 10.4477 2 11C2 11.5523 2.44772 12 3 12L3 10ZM18.466 11.7071C18.8565
@@ -69,13 +69,13 @@
 
             <?php foreach ($paginationPages as $page) { ?>
                 <a class="pagination__link <?= ($page == $currentPage) ? 'pagination__link--active' : '' ?>"
-                   href="/index.php?page=<?= $page ?>#news"><?= $page ?></a>
+                   href="/news/page-<?= $page ?>/"><?= $page ?></a>
             <?php } ?>
 
             <?php 
                 if ($currentPage < max($paginationPages)): 
             ?>
-                <a class="pagination__link pagination__link-arrow" href="index.php?page=<?= $currentPage + 1 ?>#news">
+                <a class="pagination__link pagination__link-arrow" href="/news/page-<?= $currentPage + 1 ?>/">
                     <svg width="24" height="22" viewBox="0 0 24 22" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 10C2.44772 10 2 10.4477 2 11C2 11.5523 2.44772 12 3 12L3 10ZM18.466 11.7071C18.8565
                         11.3166 18.8565 10.6834 18.466 10.2929L12.102 3.92893C11.7115 3.53841 11.0783 3.53841 10.6878

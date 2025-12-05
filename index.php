@@ -5,18 +5,32 @@ require_once 'autoload.php';
 use App\Controllers\NewsController;
 use App\Controllers\MainPageController;
 
+$newsController = new NewsController();
+$mainPageController = new MainPageController();
 
-$news_controller = new NewsController();
-$main_page_controller = new MainPageController();
+$index = $_SERVER['REQUEST_URI'];
 
-// если в GET-запросе есть ID, если нет, но есть page - новость. иначе главная
-$id = $_GET['id'] ?? null;
-$page = $_GET['page'] ?? null;
+// страница
+$articlePattern = "(\/news\/(\d+)\/)";
 
-if ($id && is_numeric($id)) {
-    $news_controller->showItemPage($id, $page);
-} elseif ($page) {    
-    $news_controller->showNewsPage($page);
+// новости
+$newsMainPattern = "(^\/news\/$)";
+$newsCatalogPattern = "(\/news\/page-(\d+)\/)";
+
+// главная страница
+$mainPagePattern = "(^\/$)";
+
+if (preg_match($newsMainPattern, $index) || preg_match($newsCatalogPattern, $index, $matches)) {
+    $page = 1;
+    if (isset($matches)) {
+        $page = $matches[1];
+    } 
+    $newsController->showNewsPage($page);
+} elseif (preg_match($articlePattern, $index, $matches)) { 
+    $id= $matches[1];
+    $newsController->showItemPage($id);
+} elseif (preg_match($mainPagePattern, $index)) {
+    $mainPageController->showMainPage();
 } else {
-    $main_page_controller->showMainPage();
+     require './404.php';
 }

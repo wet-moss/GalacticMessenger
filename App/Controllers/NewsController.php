@@ -6,6 +6,7 @@ use App\Models\News;
 class NewsController
 {
     private News $newsModel;
+    public $currentPage;
 
     public function __construct()
     {
@@ -43,6 +44,7 @@ class NewsController
         }
     }
 
+
     public function showNewsPage($page)
     {
         $currentPage = $page;
@@ -53,11 +55,12 @@ class NewsController
         require './App/Views/News/news_catalog.php';
     }
 
-    public function showItemPage($id, $page)
+    public function showItemPage($id)
     {
-        $page = $page;
+        $page = $this->currentPage;
         $article = $this->newsModel->getItemInfo($id);
 
         require './App/Views/News/news_article.php';
     }
+
 }
