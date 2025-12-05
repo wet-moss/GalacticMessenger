@@ -4,50 +4,21 @@ RewriteBase /
 
 ErrorDocument 404 /404.php
 
-
-# 1 не трогать реальные файлы и папки
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-
-
-# 2. изнутри
-
-# /index.php?page=1 → /news/
-RewriteCond %{THE_REQUEST} \s/index\.php\?page=1[\s?] [NC]
-RewriteRule ^index\.php$ /news/ [R=301,L]
-
-# /index.php?id=3&page=1 → /news/3/
-RewriteCond %{THE_REQUEST} \s/index\.php\?id=([0-9]+)&page=1[\s?] [NC]
-RewriteRule ^index\.php$ /news/%1/ [R=301,L]
-
-# /index.php?page=N → /news/page-N/
-RewriteCond %{THE_REQUEST} \s/index\.php\?page=([0-9]+)[\s?] [NC]
-RewriteRule ^index\.php$ /news/page-%1/ [R=301,L]
-
-# /index.php → /
-RewriteCond %{THE_REQUEST} \s/index\.php[\s?] [NC]
-RewriteRule ^index\.php$ / [R=301,L]
-
-
-# 3. снаружи
-
-# / → index.php
-RewriteRule ^$ index.php [L]
-
-# /news/ → index.php?page=1
-RewriteRule ^news/?$ index.php?page=1 [L]
-
-# /news/page-3/ → index.php?page=3
-RewriteRule ^news/page-([0-9]+)/?$ index.php?page=$1 [L]
-
-# /news/3/ → index.php?id=3&page=1
-RewriteRule ^news/([0-9]+)/?$ index.php?id=$1&page=1 [L]
-
-# 4. 404
-
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . - [R=404,L]
+RewriteCond     %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+# / = index.php
+#RewriteRule ^$ index.php [L]
+
+# /news/ = index.php?page=1
+#RewriteRule ^news/$ index.php?page=1 [L]
+
+# /news/page-3/ = index.php?page=3
+#RewriteRule ^news/page-([0-9]+)/$ index.php?page=$1 [L]
+
+# /news/3/ = index.php?id=3&page=1
+#RewriteRule ^news/([0-9]+)/$ index.php?id=$1&page=1 [L]
 
 </IfModule>

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title>Галактический вестник | Главная</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <?php 
@@ -18,7 +18,7 @@
         <br>
 
         <h2 class='pagination__link'>
-            <a href="index.php?page=1">
+            <a href="/index.php?page=1">
             К новостям
                 <svg width="26" height="15" viewBox="0 0 26 15" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M25.707 8.07106C26.0975 7.68054 26.0975 7.04737 25.707 6.65685L19.343

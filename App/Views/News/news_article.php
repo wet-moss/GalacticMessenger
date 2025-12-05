@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title>Галактический вестник | Новость</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <?php 
@@ -14,7 +14,7 @@
 
     <main class="news-article container">
         <nav class="news-article__breadcrumbs">
-            <a href="index.php?page=<?= $page ?>">Главная</a>
+            <a href="/index.php?page=<?= $page ?>">Главная</a>
             <span>/</span>
             <span class="news-article__breadcrumbs--current"><?= $article['title'] ?></span>
         </nav>
@@ -40,7 +40,7 @@
                     Назад к новостям
                 </a>
             </div>
-            <img class="news-article__img" src="./Images/<?= $article['image'] ?>" alt="Иллюстрация к новости"
+            <img class="news-article__img" src="/Images/<?= $article['image'] ?>" alt="Иллюстрация к новости"
                  width="740" height="570" loading="lazy"/>
         </div>
     </main>
