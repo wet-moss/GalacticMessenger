@@ -11,7 +11,7 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 
-# 2. ВНЕШНИЕ РЕДИРЕКТЫ
+# 2. изнутри
 
 # /index.php?page=1 → /news/
 RewriteCond %{THE_REQUEST} \s/index\.php\?page=1[\s?] [NC]
@@ -30,7 +30,7 @@ RewriteCond %{THE_REQUEST} \s/index\.php[\s?] [NC]
 RewriteRule ^index\.php$ / [R=301,L]
 
 
-# 3. ВНУТРЕННИЕ REWRITE
+# 3. снаружи
 
 # / → index.php
 RewriteRule ^$ index.php [L]
