@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title>Галактический вестник | Главная</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <?php 
-        include './Views/Blocks/header.html'; 
+        include './App/Views/Blocks/header.html'; 
     ?>
 
     <div class="container">
@@ -35,7 +35,7 @@
     </div>
 
     <?php 
-        include './Views/Blocks/footer.html';     
+        include './App/Views/Blocks/footer.html';     
     ?>
 </body>
 </html>

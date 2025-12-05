@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php 
-        include './Views/Blocks/header.html'; 
+        include './App/Views/Blocks/header.html'; 
     ?>
 
     <section class="banner">
@@ -91,7 +91,7 @@
     </main>
 
     <?php 
-        include './Views/Blocks/footer.html'; 
+        include './App/Views/Blocks/footer.html'; 
     ?>
 </body>
 </html>

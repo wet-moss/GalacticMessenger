@@ -50,7 +50,7 @@ class NewsController
         $currentItemsList = $this->newsModel->getItems($page);
         $paginationPages = $this->paginateItems($page);
 
-        require './Views/News/news_catalog.php';
+        require './App/Views/News/news_catalog.php';
     }
 
     public function showItemPage($id, $page)
@@ -58,6 +58,6 @@ class NewsController
         $page = $page;
         $article = $this->newsModel->getItemInfo($id);
 
-        require './Views/News/news_article.php';
+        require './App/Views/News/news_article.php';
     }
 }
