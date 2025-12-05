@@ -6,3 +6,64 @@ RewriteBase /
 
 #RewriteRule ^(/index.php/page=1)$ ^(/news/)$ [L, QSA]
 #RewriteRule ^index.php/page=[1-9]?$
+
+RewriteEngine On
+RewriteBase /
+
+###############################################
+# REDIRECT (изнутри - в наружу)
+###############################################
+
+# Главная: /index.php → /
+RewriteCond %{THE_REQUEST} \s/index\.php[\s?]
+RewriteRule ^index\.php$ / [R=301,L]
+
+# Новости, страница 1: /index.php?page=1 → /news/
+RewriteCond %{THE_REQUEST} \s/index\.php\?page=1[\s$]
+RewriteRule ^index\.php$ /news/ [R=301,L]
+
+# Новости, страницы >1: /index.php?page=3 → /news/page-3/
+RewriteCond %{THE_REQUEST} \s/index\.php\?page=([0-9]+)
+RewriteRule ^index\.php$ /news/page-%1/ [R=301,L]
+
+# Конкретная новость: /index.php?id=3&page=1 → /news/3/
+RewriteCond %{THE_REQUEST} \s/index\.php\?id=([0-9]+)&page=1[\s$]
+RewriteRule ^index\.php$ /news/%1/ [R=301,L]
+
+
+###############################################
+# REWRITE (снаружи - внутрь)
+###############################################
+
+# Главная
+RewriteRule ^$ index.php [L]
+
+# Новости (первая страница)
+RewriteRule ^news/?$ index.php?page=1 [L,QSA]
+
+# Новости, страницы >1
+RewriteRule ^news/page-([0-9]+)/?$ index.php?page=$1 [L,QSA]
+
+# Конкретная новость
+RewriteRule ^news/([0-9]+)/?$ index.php?id=$1&page=1 [L,QSA]
+
+RewriteEngine On
+RewriteBase /
+
+ErrorDocument 404 /404.php
+
+# Главная
+RewriteRule ^$ index.php [L]
+
+# Новости (первая)
+RewriteRule ^news/?$ index.php?page=1 [L,QSA]
+
+# Новости page>1
+RewriteRule ^news/page-([0-9]+)/?$ index.php?page=$1 [L,QSA]
+
+# Конкретная новость
+RewriteRule ^news/([0-9]+)/?$ index.php?id=$1&page=1 [L,QSA]
+
+# --------- 404 FALLBACK ---------
+# Если URL не попал ни под одно правило — вернуть 404
+RewriteRule ^ - [R=404,L]
