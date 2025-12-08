@@ -2,8 +2,6 @@
 RewriteEngine On
 RewriteBase /
 
-ErrorDocument 404 /404.php
-
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond     %{REQUEST_FILENAME} !-d

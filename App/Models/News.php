@@ -40,6 +40,3 @@ class News
         return $this->pdo->query("SELECT COUNT(*) FROM news")->fetchColumn();
     }
 }
-
-
-

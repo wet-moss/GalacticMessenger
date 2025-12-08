@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Models\News;
 
-class NewsController extends BaseController
+class NewsController extends BasedController
 {
     private News $newsModel;
     public $currentPage;
@@ -44,25 +44,32 @@ class NewsController extends BaseController
         }
     }
 
-
-    public function showNewsPage($page)
+    public function showItemsList($page)
     {
-        $currentPage = $page;
-        $lastItems = $this->newsModel->getLastItem();
-        $currentItemsList = $this->newsModel->getItems($page);
-        $paginationPages = $this->paginateItems($page);
-        require './App/Views/Pages/news_catalog.php';
+        $data = [
+            'currentPage' => $page,
+            'lastItems' => $this->newsModel->getLastItem(),
+            'currentItemsList' =>$this->newsModel->getItems($page),
+            'paginationPages' => $this->paginateItems($page),
+            'title' => 'Новости'
+        ];
+
+        self::render('News/items_list', $data);
     }
 
-    public function showItemPage($id)
+    public function showItemDetails($id)
     {
-        $page = $this->currentPage;
         $itemInfo = $this->newsModel->getItemInfo($id);
         if ($itemInfo) {
-            $article = $this->newsModel->getItemInfo($id);
-            require './App/Views/Pages/news_article.php';
+            $data = [
+                'page' => $this->currentPage,
+                'itemInfo' => $itemInfo,
+                'article' => $this->newsModel->getItemInfo($id),
+                'title' => 'Статья',
+            ];
+            self::render('News/item_details', $data);
         } else {
-            $this->show404Page();
+            self::show404Page();
         }
     }
 }

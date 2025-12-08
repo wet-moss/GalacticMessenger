@@ -3,32 +3,27 @@
 require_once 'autoload.php';
 
 use App\Controllers\NewsController;
-use App\Controllers\MainPageController;
-use App\Controllers\BaseController;
+use App\Controllers\MainController;
+use App\Controllers\BasedController;
 
 $newsController = new NewsController();
-$mainPageController = new MainPageController();
-$basePageController = new BaseController();
+$mainPageController = new MainController();
+$baseController = new BasedController();
 
 $uri = $_SERVER['REQUEST_URI'];
 
-// страница
-$articlePattern = "{^/news/(\d+)/$}";
-
-// новости
-$newsCatalogPattern = "{^/news/(page-(\d+)/)?$}";
-
-// главная страница
-$mainPagePattern = "(^/$)";
-
-if (preg_match($newsCatalogPattern, $uri, $matches)) {
+if (preg_match("{^/news/(page-(\d+)/)?$}", $uri, $matches)) {
+    // новости
     $page = $matches[2] ?? 1;
-    $newsController->showNewsPage($page);
-} elseif (preg_match($articlePattern, $uri, $matches)) {
+    $newsController->showItemsList($page);
+} elseif (preg_match("{^/news/(\d+)/$}", $uri, $matches)) {
+    // статья
     $id = $matches[1];
-    $newsController->showItemPage($id);
-} elseif (preg_match($mainPagePattern, $uri)) {
-    $mainPageController->showMainPage();
+    $newsController->showItemDetails($id);
+} elseif (preg_match("(^/$)", $uri)) {
+    // главная страница
+    $mainPageController->showMain();
 } else {
-    $basePageController->show404Page();
+    // ошибка 404
+    $baseController->show404Page();
 }
