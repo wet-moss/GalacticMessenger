@@ -5,6 +5,6 @@ class MainPageController
 {
     public function showMainPage()
     {
-        require './App/Views/main_page.php';
+        require './App/Views/Pages/main_page.php';
     }
 }

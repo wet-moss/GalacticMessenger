@@ -25,15 +25,13 @@ class News
     {
         $start = ($currentPage - 1) * $itemsPerPage;
         $pdoStatement = $this->pdo->query("SELECT * FROM news ORDER BY date DESC LIMIT $itemsPerPage OFFSET $start");
-        
         return $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getItemInfo(int $id): array
+    public function getItemInfo(int $id)
     {
         $pdoStatement = $this->pdo->prepare("SELECT * FROM news WHERE id = :id");
         $pdoStatement->execute(['id' => $id]);
-
         return $pdoStatement->fetch(PDO::FETCH_ASSOC);
     }
 

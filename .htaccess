@@ -9,16 +9,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond     %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [L]
 
-# / = index.php
-#RewriteRule ^$ index.php [L]
-
-# /news/ = index.php?page=1
-#RewriteRule ^news/$ index.php?page=1 [L]
-
-# /news/page-3/ = index.php?page=3
-#RewriteRule ^news/page-([0-9]+)/$ index.php?page=$1 [L]
-
-# /news/3/ = index.php?id=3&page=1
-#RewriteRule ^news/([0-9]+)/$ index.php?id=$1&page=1 [L]
-
 </IfModule>

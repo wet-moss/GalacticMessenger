@@ -2,8 +2,8 @@
 namespace App\Controllers;
 
 use App\Models\News;
- 
-class NewsController
+
+class NewsController extends BaseController
 {
     private News $newsModel;
     public $currentPage;
@@ -51,16 +51,18 @@ class NewsController
         $lastItems = $this->newsModel->getLastItem();
         $currentItemsList = $this->newsModel->getItems($page);
         $paginationPages = $this->paginateItems($page);
-
-        require './App/Views/News/news_catalog.php';
+        require './App/Views/Pages/news_catalog.php';
     }
 
     public function showItemPage($id)
     {
         $page = $this->currentPage;
-        $article = $this->newsModel->getItemInfo($id);
-
-        require './App/Views/News/news_article.php';
+        $itemInfo = $this->newsModel->getItemInfo($id);
+        if ($itemInfo) {
+            $article = $this->newsModel->getItemInfo($id);
+            require './App/Views/Pages/news_article.php';
+        } else {
+            $this->show404Page();
+        }
     }
-
 }
