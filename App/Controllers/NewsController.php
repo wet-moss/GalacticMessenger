@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Models\News;
 
-class NewsController
+class NewsController extends BasedController
 {
     private News $newsModel;
 
@@ -43,7 +43,7 @@ class NewsController
         }
     }
 
-    public function getItemsListData($page)
+    public function showItemsList($page)
     {
         $data = [
             'currentPage' => $page,
@@ -53,10 +53,10 @@ class NewsController
             'title' => 'Новости'
         ];
 
-        return $data;
+        self::render('News/items_list', $data);
     }
 
-    public function getItemDetailsData($id)
+    public function showItemDetails($id)
     {
         $itemInfo = $this->newsModel->getItemInfo($id);
         
@@ -65,10 +65,11 @@ class NewsController
                 'itemInfo' => $itemInfo,
                 'article' => $this->newsModel->getItemInfo($id),
                 'title' => 'Статья',
+                
             ];
-            return $data;
+            self::render('News/item_details', $data);
         } else {
-            return null;
+            self::ShowPage404();
         }
     }
 }

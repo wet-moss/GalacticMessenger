@@ -1,6 +1,14 @@
 <?php
 namespace App\Controllers;
 
-class MainController {
+class MainController extends BasedController
+{
+        public static function showMainPage()
+        {
+        $data = [
+            'title' =>'Главная'
+        ];
 
+        self::render('main', $data);
+    }
 }
