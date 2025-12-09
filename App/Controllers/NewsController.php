@@ -43,7 +43,7 @@ class NewsController extends BasedController
         }
     }
 
-    public function showList($page, $id)
+    public function showList($page)
     {
         $data = [
             'currentPage' => $page,

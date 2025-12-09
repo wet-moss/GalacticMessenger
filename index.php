@@ -7,3 +7,14 @@ use App\Dispatcher;
 $uri = $_SERVER['REQUEST_URI'];
 
 new Dispatcher($uri);
+
+
+/*
+
+
+$dispatcher = new Dispatcher();
+
+$dispatcher = Services::get('Dispatcher');
+
+
+

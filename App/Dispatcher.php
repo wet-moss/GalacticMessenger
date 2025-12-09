@@ -7,7 +7,7 @@ class Dispatcher
         "{^/news/(page-(\d+)/)?$}" => [
             'controller' => 'NewsController',
             'action' => 'showList',
-            'args' => ['page' => 2, 'id' => 1]
+            'args' => ['page' => 2]
         ],
 
         "{^/news/(\d+)/$}" => [
@@ -28,7 +28,7 @@ class Dispatcher
         $this->checkUri($uri, $this->data);
     }
 
-    public function checkUri ($uri, $data) 
+    private function checkUri ($uri, $data) 
     {   
     foreach ($data as $pattern => $relations) {
         if (preg_match($pattern, $uri, $matches)) {
@@ -40,13 +40,14 @@ class Dispatcher
     $baseController->showPage404();
     }
 
-    public function showPage($relations, $matches) 
+    private function showPage($relations, $matches) 
     {
         $controller = "App\\Controllers\\" . $relations['controller'];
         $action =   $relations['action'];
         $args = $relations['args'];
 
         $pageController = new $controller();
+
         if ($args) {
             foreach ($args as $index) {
                 $info[] = $matches[$index] ?? 1;
