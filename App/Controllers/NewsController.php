@@ -43,10 +43,8 @@ class NewsController extends BasedController
         }
     }
 
-    public function showList(array $info)
+    public function showList($page, $id)
     {
-        $page = $info['page'];
-
         $data = [
             'currentPage' => $page,
             'lastItems' => $this->newsModel->getLastItem(),
@@ -58,9 +56,8 @@ class NewsController extends BasedController
         self::render('News/items_list', $data);
     }
 
-    public function showItemDetails($info)
+    public function showItemDetails($id)
     {
-        $id = $info['id'];
         $itemInfo = $this->newsModel->getItemInfo($id);
         
         if ($itemInfo) {
@@ -69,7 +66,7 @@ class NewsController extends BasedController
                 'article' => $this->newsModel->getItemInfo($id),
                 'title' => 'Статья',
             ];
-            
+
             self::render('News/item_details', $data);
         } else {
             self::ShowPage404();
